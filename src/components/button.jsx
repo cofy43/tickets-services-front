@@ -1,5 +1,6 @@
 const style = {
   backgroundColor: "rgb(95, 72, 246)",
+  color: "white",
   appearance: "button",
   backfaceVisibility: "hidden",  
   borderRadius: "6px",

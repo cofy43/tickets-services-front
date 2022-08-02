@@ -4,7 +4,7 @@ body {
 
 nav {
   background-color: black;
-  height: 3rem;  
+  height: 3rem;
   text-align: center;
   display: flex;
   flex-direction: row-reverse;
@@ -16,4 +16,45 @@ nav a {
   color: white;
   text-decoration: none;
   font-family: Roboto, "Open Sans", "Segoe UI", sans-serif;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.header-card {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.column {
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* BOTTOM BARS ================================= */
+.bar 	{ position:relative; display:block; width:300px; }
+.bar:before, .bar:after 	{
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
 }
