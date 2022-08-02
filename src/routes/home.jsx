@@ -87,14 +87,10 @@ export default function Home() {
     let res = await createATicket({ client: formValues });
     setMessage(res.message);
     setSuccessAction(res.ok);
-    if (res.ok) {
-      resetValues();
-    }    
+    if (res.ok) {      
+      setFormValues(defaultValues);
+    }
     setOpen(true);
-  }
-
-  function resetValues() {
-    setFormValues(defaultValues);
   }
 
   function isValidForm() {
@@ -106,7 +102,7 @@ export default function Home() {
     );
   }
 
-  const handleClose = () => {
+  const handleClose = () => {    
     setOpen(false);
     setMessage("");
   }
@@ -153,6 +149,7 @@ export default function Home() {
                     error={!formValues.name}
                     label="Nombre"
                     name="name"
+                    value={formValues.name}
                     onChange={handleInputChange}
                     required
                   />
@@ -162,6 +159,7 @@ export default function Home() {
                     error={!formValues.fatherLastName}
                     label="Apellido Paterno"
                     name="fatherLastName"
+                    value={formValues.fatherLastName}
                     onChange={handleInputChange}
                     required
                   />
@@ -171,6 +169,7 @@ export default function Home() {
                     error={!formValues.motherLastName}
                     label="Apellido Materno"
                     name="motherLastName"
+                    value={formValues.motherLastName}
                     onChange={handleInputChange}
                     required
                   />
@@ -179,6 +178,7 @@ export default function Home() {
                   <TextField
                     label="Número telefónico"
                     name="phone"
+                    value={formValues.phone}
                     onChange={handleInputChange}
                     required
                   />
@@ -187,6 +187,7 @@ export default function Home() {
                   <TextField
                     label="Correo electrónico"
                     name="email"
+                    value={formValues.email}
                     onChange={handleInputChange}
                     required
                   />

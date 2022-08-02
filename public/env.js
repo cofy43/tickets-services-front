@@ -31,7 +31,7 @@ window.env = {
   "npm_config_userconfig": "/Users/martinfelipeespinalcruces/.npmrc",
   "npm_config_init_module": "/Users/martinfelipeespinalcruces/.npm-init.js",
   "__CFBundleIdentifier": "com.apple.Terminal",
-  "npm_command": "run-script",
+  "npm_command": "start",
   "PWD": "/Users/martinfelipeespinalcruces/Documents/Proyectos/TicketsServices/front",
   "npm_lifecycle_event": "start",
   "EDITOR": "vi",
@@ -54,6 +54,6 @@ window.env = {
   "HOMEBREW_CELLAR": "/opt/homebrew/Cellar",
   "npm_node_execpath": "/Users/martinfelipeespinalcruces/.nvm/versions/node/v16.15.0/bin/node",
   "npm_config_prefix": "/Users/martinfelipeespinalcruces/.nvm/versions/node/v16.15.0",
-  "REACT_BASE_URL2": "https://tickets-service-project.herokuapp.com/",
-  "REACT_BASE_URL": "http://localhost:3000/"
+  "REACT_BASE_URL": "https://tickets-service-project.herokuapp.com/",
+  "REACT_BASE_URL2": "http://localhost:3000/"
 };
