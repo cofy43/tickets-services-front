@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 
-/** Components */
-import CustomButton from "../components/button";
+/** Materia UI */
+import Button from "@mui/material/Button";
 
 export default function Login() {
   return (
     <div>
       <nav>
-        <CustomButton>
+        <Button>
           <Link to="/">cerrar sesión</Link>
-        </CustomButton>
+        </Button>
       </nav>
       <main>Login</main>
     </div>
