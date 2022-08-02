@@ -15,7 +15,7 @@ export async function login(body) {
     })
     .catch(function (error) {
       console.log(error);
-      result = { message: error.message, ok: false };
+      result = { message: error.response.data.message, ok: false };
     });
   return result;
 }
@@ -32,9 +32,9 @@ export async function logout() {
       console.log(response);
       result = { message: response.data.message, ok: true };
     })
-    .catch(function (error) {
-      console.log(error);
-      result = { message: error.message, ok: false };
+    .catch(function (err) {
+      console.log(err);
+      result = { message: err.response.data.message, ok: false };
     });
   return result;
 }
