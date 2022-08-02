@@ -5,19 +5,16 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
-import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 
-/** Images */
-import Succes from "../assets/success.svg";
-import Error from "../assets/error.svg";
-
 /** API */
 import { createATicket, searchTicket } from "../api/tickets";
+
+/** Components */
+import ModalMessage from "../componets/modalMessage";
 
 import moment from "moment";
 import 'moment/locale/es';
@@ -30,35 +27,6 @@ const defaultValues = {
   email: "",
   phone: "",
 };
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  textAlign: "center",
-  borderRadius: "10px"
-
-};
-
-const styleImage = {
-  width: "50px",
-  height: "50px",
-  display: "block",
-  marginLeft: "auto",
-  marginRight: "auto",
-  padding: "1rem"
-};
-
-const styleCloseButton = {
-  display: "flex",
-  flexDirection: "row-reverse"
-}
 
 const statusTagStyle = {
   width: "auto",
@@ -84,7 +52,7 @@ export default function Home() {
   };
 
   async function create() {
-    let res = await createATicket({ client: formValues });
+    let res = await createATicket({ client: formValues });    
     setMessage(res.message);
     setSuccessAction(res.ok);
     if (res.ok) {      
@@ -228,10 +196,12 @@ export default function Home() {
               {ticketFouned && (
                 <Grid container rowSpacing={3.2}>
                   <Grid item xs={7}>
-                    <Typography variant="overline" align="right">No. de Ticket:</Typography>
+                    <Typography variant="overline" align="right">
+                      No. de Ticket:
+                    </Typography>
                     <Typography>{data.name}</Typography>
                   </Grid>
-                  <Grid item xs={5} sx={{alignContent: "center"}}>
+                  <Grid item xs={5} sx={{ alignContent: "center" }}>
                     <div
                       style={{
                         ...statusTagStyle,
@@ -244,15 +214,21 @@ export default function Home() {
                     </div>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="overline" align="right">Creado:</Typography>
+                    <Typography variant="overline" align="right">
+                      Creado:
+                    </Typography>
                     <Typography>{data.createdAt}</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="overline" align="right">Última actualización:</Typography>
+                    <Typography variant="overline" align="right">
+                      Última actualización:
+                    </Typography>
                     <Typography>{data.updatedAt}</Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <Typography variant="overline" align="right">Notas:</Typography>
+                    <Typography variant="overline" align="right">
+                      Notas:
+                    </Typography>
                     <Typography>{data.notes}</Typography>
                   </Grid>
                 </Grid>
@@ -262,30 +238,12 @@ export default function Home() {
         </Grid>
       </Grid>
 
-      <Modal open={open}>
-        <Box sx={style}>
-          {successAction ? (
-            <img
-              src={Succes}
-              className="center"
-              style={styleImage}
-              alt="success svg"
-            />
-          ) : (
-            <img
-              src={Error}
-              className="center"
-              style={styleImage}
-              alt="error svg"
-            />
-          )}
-          {message}
-          <hr />
-          <Button onClick={handleClose} sx={styleCloseButton}>
-            Cerrar
-          </Button>
-        </Box>
-      </Modal>
+      <ModalMessage
+        open={open}
+        successAction={successAction}
+        message={message}
+        handleClose={handleClose}
+      />
     </>
   );
 }
