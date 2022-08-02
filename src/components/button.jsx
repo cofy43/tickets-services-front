@@ -17,8 +17,13 @@ const style = {
 
 export default function CustomButton(props) {
   return (
-    <button style={style} onClick={props.onClick}>
+    <button
+      type={props.type ? props.type : ""}
+      style={style}
+      onClick={props.onClick}
+      disable={props.disable !== undefined ? props.disable : false}
+    >
       {props.children}
     </button>
-  )
+  );
 }
