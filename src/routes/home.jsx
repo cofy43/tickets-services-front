@@ -9,13 +9,19 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
 
 /** Images */
 import Succes from "../assets/success.svg";
 import Error from "../assets/error.svg";
 
 /** API */
-import { createATicket } from "../api/tickets";
+import { createATicket, searchTicket } from "../api/tickets";
+
+import moment from "moment";
+import 'moment/locale/es';
+moment.locale('es');
 
 const defaultValues = {
   name: "",
@@ -54,13 +60,23 @@ const styleCloseButton = {
   flexDirection: "row-reverse"
 }
 
+const statusTagStyle = {
+  width: "auto",
+  padding: "5px 10px",
+  borderRadius: "5px"
+}
+
 export default function Home() {
+  // To create a ticket
   const [formValues, setFormValues] = useState(defaultValues);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [successAction, setSuccessAction] = useState(true);
-  const [message, setMessage] = useState(
-    "Su número de ticket es: Homely-12, se le será notificado sobre el progreso del ticket"
-  );
+  const [message, setMessage] = useState("");
+
+  // To find a ticket
+  const [search, setSearch] = useState("");
+  const [data, setData] = useState();
+  const [ticketFouned, setTicketFouned] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -95,10 +111,33 @@ export default function Home() {
     setMessage("");
   }
 
+  async function find() {
+    const result = await searchTicket(`ticketName=${search}`);
+    setTicketFouned(result.ok)
+    if (result.ok) {
+      result.data.createdAt = parseDate(result.data.createdAt);
+      result.data.updatedAt = parseDate(result.data.updatedAt);
+      setData(result.data);
+    } else {
+      setSuccessAction(false);
+      setMessage(result.message);
+      setOpen(true);
+    }
+  }
+
+  function parseDate(dateString) {
+    return moment(dateString).format('LLLL');
+  }
+
   return (
     <>
-      <Grid container spacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={7}>
+      <Grid
+        container
+        sx={{ marginTop: "calc(8%)" }}
+        spacing={1}
+        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+      >
+        <Grid sx={{ height: "700px" }} item xs={7}>
           <Card sx={{ minWidth: 275 }}>
             <CardContent>
               <Typography variant="h6">¿Tuviste algún problema?</Typography>
@@ -153,7 +192,11 @@ export default function Home() {
                   />
                 </Grid>
                 <Grid item xs={4}>
-                  <Button disabled={!isValidForm()} onClick={() => create()}>
+                  <Button
+                    startIcon={<i class="fa-solid fa-paper-plane"></i>}
+                    disabled={!isValidForm()}
+                    onClick={() => create()}
+                  >
                     Enviar
                   </Button>
                 </Grid>
@@ -161,13 +204,58 @@ export default function Home() {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={5}>
-          <Card sx={{ minWidth: 275 }}>
+        <Grid sx={{ height: "700px" }} item xs={5}>
+          <Card>
             <CardContent>
               <Typography variant="h6">
                 ¿Quieres saber el estatus de ti ticket?
               </Typography>
               <Typography variant="h6">Puedes consultarlo aquí</Typography>
+              <InputBase
+                sx={{ ml: 1, flex: 1, mt: 2 }}
+                placeholder="Búsqueda rápida"
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <IconButton
+                onClick={() => find()}
+                sx={{ p: "10px" }}
+                aria-label="search"
+              >
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </IconButton>
+              {ticketFouned && (
+                <Grid container rowSpacing={3.2}>
+                  <Grid item xs={7}>
+                    <Typography variant="overline" align="right">No. de Ticket:</Typography>
+                    <Typography>{data.name}</Typography>
+                  </Grid>
+                  <Grid item xs={5} sx={{alignContent: "center"}}>
+                    <div
+                      style={{
+                        ...statusTagStyle,
+                        backgroundColor: data.status.esFinal
+                          ? "#00E676"
+                          : "#FDD835",
+                      }}
+                    >
+                      {data.status.name}
+                    </div>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography variant="overline" align="right">Creado:</Typography>
+                    <Typography>{data.createdAt}</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography variant="overline" align="right">Última actualización:</Typography>
+                    <Typography>{data.updatedAt}</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="overline" align="right">Notas:</Typography>
+                    <Typography>{data.notes}</Typography>
+                  </Grid>
+                </Grid>
+              )}
             </CardContent>
           </Card>
         </Grid>
@@ -191,8 +279,10 @@ export default function Home() {
             />
           )}
           {message}
-          <hr/>
-          <Button onClick={handleClose} sx={styleCloseButton}>Cerrar</Button>
+          <hr />
+          <Button onClick={handleClose} sx={styleCloseButton}>
+            Cerrar
+          </Button>
         </Box>
       </Modal>
     </>

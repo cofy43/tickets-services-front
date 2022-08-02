@@ -2,7 +2,6 @@ import env from "react-dotenv";
 const axios = require('axios').default;
 
 export async function createATicket(body) {
-  console.log(env)
   let result;  
   let config = {
       method: 'post',
@@ -18,5 +17,22 @@ export async function createATicket(body) {
     console.log(error)
     result = {message: error.message, ok: false};
   });
+  return result;
+}
+
+export async function searchTicket(query) {
+  let result;
+  let config = {
+    method: 'get',
+    url: `${env.REACT_BASE_URL}tickets/info?${query}`,
+  }
+
+  await axios(config)
+    .then((response) => {
+      result = {data: response.data, ok: true}
+    }).catch((err) => {      
+      result = {message: err.response.data.message, ok: false}
+    });
+
   return result;
 }
