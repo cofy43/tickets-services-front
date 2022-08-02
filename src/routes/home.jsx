@@ -61,12 +61,19 @@ export default function Home() {
     setOpen(true);
   }
 
+  function validateEmail() {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(formValues.email).toLowerCase());
+  }
+
   function isValidForm() {
+    let validEmail = formValues.email.length > 0 && validateEmail()
     return (
       formValues.name.length > 0 &&
       formValues.fatherLastName.length > 0 &&
       formValues.motherLastName.length > 0 &&
-      (formValues.email.length > 0 || formValues.phone.length > 0)
+      (validEmail || formValues.phone.length > 0)
     );
   }
 
@@ -146,6 +153,7 @@ export default function Home() {
                   <TextField
                     label="Número telefónico"
                     name="phone"
+                    type="phone"
                     value={formValues.phone}
                     onChange={handleInputChange}
                     required
