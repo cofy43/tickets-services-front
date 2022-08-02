@@ -4,10 +4,10 @@ const axios = require("axios").default;
 export async function login(body) {
   let result;
   let config = {
-    method: "post",
     url: `${env.REACT_BASE_URL}auth/login`,
+    method: "post",    
     data: body,
-    withCredentials: true,
+    withCredentials: true,    
   };
   await axios(config)
     .then(function (response) {
