@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 /** Material UI */
 import Button from "@mui/material/Button";
 
 /** Components */
-import ModalMessage from "../componets/modalMessage";
+// import ModalMessage from "../componets/modalMessage";
 
 /** API */
 import { pendingTickets, completedTickets, getInfo } from "../api/member";
 
 export default function Dashboard() {
-  const [memberInfo, setMemberInfo] = useState(null);
-  const [todoList, setTodoList] = useState([]);
-  const [completedList, setCompletedList] = useState([]);
+  // const [memberInfo, setMemberInfo] = useState(null);
+  // const [todoList, setTodoList] = useState([]);
+  // const [completedList, setCompletedList] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
