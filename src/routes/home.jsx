@@ -32,7 +32,9 @@ export default function Home() {
     let res = await createATicket({client: formValues});
     setMessage(res.message);
     setSuccessResponse(res.ok);
-    if (res.ok) resetValues();
+    if (res.ok) {
+      resetValues();
+    }
     setOpen(true);
   }
 
