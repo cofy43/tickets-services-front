@@ -1,7 +1,17 @@
+import { Link } from "react-router-dom";
+
+/** Components */
+import CustomButton from "../components/button";
+
 export default function Login() {
   return (
-    <main style={{ padding: "1rem 0" }}>
-      <h2>Login</h2>
-    </main>
+    <div>
+      <nav>
+        <CustomButton>
+          <Link to="/">cerrar sesión</Link>
+        </CustomButton>
+      </nav>
+      <main>Login</main>
+    </div>
   );
 }

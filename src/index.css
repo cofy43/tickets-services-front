@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+}
+
+nav {
+  background-color: black;
+  height: 3rem;  
+  text-align: center;
+  display: flex;
+  flex-direction: row-reverse;
+  padding-top: 0.4rem;
+  padding-right: 3rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-family: Roboto, "Open Sans", "Segoe UI", sans-serif;
+}

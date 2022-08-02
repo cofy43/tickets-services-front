@@ -5,8 +5,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import App from './App';
+
+import "./index.css";
+
 /** View */
+import App from './App';
 import Dashboard from './routes/dashboard';
 import Login from './routes/login';
 

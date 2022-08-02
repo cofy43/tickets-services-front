@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
 
+/** Components */
+import CustomButton from "./components/button";
+
 export default function App() {
   return (
-    <div>
-      <h1>Bookkeeper!</h1>
-      <nav
-        style={{
-          borderBottom: "solid 1px",
-          paddingBottom: "1rem",
-        }}
-      >
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/login">Login</Link> |{" "}
-        <Link to="/dashboard">Dashboard</Link>
+    <div>      
+      <nav>
+        <CustomButton>
+          <Link to="/login">iniciar sesion</Link>
+        </CustomButton>
       </nav>
     </div>
   );
