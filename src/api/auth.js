@@ -7,6 +7,7 @@ export async function login(body) {
     method: "post",
     url: `${env.REACT_BASE_URL}auth/login`,
     data: body,
+    withCredentials: true,
   };
   await axios(config)
     .then(function (response) {

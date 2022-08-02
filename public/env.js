@@ -54,6 +54,6 @@ window.env = {
   "HOMEBREW_CELLAR": "/opt/homebrew/Cellar",
   "npm_node_execpath": "/Users/martinfelipeespinalcruces/.nvm/versions/node/v16.15.0/bin/node",
   "npm_config_prefix": "/Users/martinfelipeespinalcruces/.nvm/versions/node/v16.15.0",
-  "REACT_BASE_URL": "https://tickets-service-project.herokuapp.com/",
-  "REACT_BASE_URL2": "http://localhost:3000/"
+  "REACT_BASE_URL2": "https://tickets-service-project.herokuapp.com/",
+  "REACT_BASE_URL": "http://localhost:3000/"
 };
