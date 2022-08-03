@@ -1,7 +1,17 @@
 body {
+  height: 100%;
   margin: 0;
   background-image:
     -webkit-linear-gradient(rgb(95, 72, 246), #fff);
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+
 }
 
 nav {
