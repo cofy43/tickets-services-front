@@ -98,7 +98,7 @@ export default function Home() {
   }
 
   function parseDate(dateString) {
-    return moment(dateString).format('LLLL');
+    return moment(dateString).format('DD/MM/YYYY');
   }
 
   return (
