@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-image:
-    -webkit-linear-gradient(60deg,rgba(178, 111, 174, 0.637),rgb(95, 72, 246));
+    -webkit-linear-gradient(rgb(95, 72, 246), #fff);
 }
 
 nav {

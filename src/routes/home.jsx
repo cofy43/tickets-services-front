@@ -111,7 +111,7 @@ export default function Home() {
         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       >
         <Grid sx={{ height: "700px" }} item xs={7}>
-          <Card sx={{ minWidth: 275 }}>
+          <Card>
             <CardContent>
               <Typography variant="h6">¿Tuviste algún problema?</Typography>
               <Typography variant="h6">Cuentanos</Typography>
