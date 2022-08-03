@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "rgb(159, 145, 247)",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -50,7 +50,7 @@ export default function CustomTable(props) {
         </TableHead>
         <TableBody>
           {props.list.map((row, indx) => (
-            <StyledTableRow key={indx}>
+            <StyledTableRow key={indx} onDoubleClick={() => props.onDoubleClick(row.id)}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
