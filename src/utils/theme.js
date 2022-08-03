@@ -26,8 +26,8 @@ export const theme = createTheme({
     },
     MuiCard: {
       styleOverrides: {
-        root: {
-          boxShadow: "rgb(0 0 0 / 10%) 0px 8px 32px",
+        root: {                    
+          boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
           textAlign: "center",
           ":disabled": {
             color: "black",
