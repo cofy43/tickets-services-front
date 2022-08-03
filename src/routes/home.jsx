@@ -31,7 +31,8 @@ const defaultValues = {
 
 const statusTagStyle = {
   width: "auto",
-  padding: "5px 10px",
+  padding: "10px 15px",
+  wordSpacing: "20px",
   borderRadius: "5px"
 }
 
@@ -219,7 +220,12 @@ export default function Home() {
                           : "#FDD835",
                       }}
                     >
-                      {data.status.name}
+                      {data.status.esFinal ? (                        
+                        <i class="fa-regular fa-circle-check"></i>
+                      ) : (
+                        <i class="fa-solid fa-spinner"></i>
+                      )}
+                      {" " + data.status.name}
                     </div>
                   </Grid>
                   <Grid item xs={6}>
