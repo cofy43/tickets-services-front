@@ -11,11 +11,9 @@ export async function login(body) {
   };
   await axios(config)
     .then(function (response) {
-      console.log(response);
       result = { message: response.data.message, ok: true };
     })
     .catch(function (error) {
-      console.log(error);
       result = { message: error.response.data.message, ok: false };
     });
   return result;
@@ -30,11 +28,9 @@ export async function logout() {
   };
   await axios(config)
     .then(function (response) {
-      console.log(response);
       result = { message: response.data.message, ok: true };
     })
     .catch(function (err) {
-      console.log(err);
       result = { message: err.response.data.message, ok: false };
     });
   return result;

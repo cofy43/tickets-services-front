@@ -10,11 +10,9 @@ export async function pendingTickets() {
   };
   await axios(config)
     .then(function (response) {
-      console.log(response);
       result = { data: response.data, ok: true };
     })
     .catch(function (error) {
-      console.log(error);
       result = { message: error.message, ok: false };
     });
   return result;
@@ -29,11 +27,9 @@ export async function completedTickets() {
   };
   await axios(config)
     .then(function (response) {
-      console.log(response);
       result = { data: response.data, ok: true };
     })
     .catch(function (error) {
-      console.log(error);
       result = { message: error.message, ok: false };
     });
   return result;
@@ -48,11 +44,9 @@ export async function getInfo() {
   };
   await axios(config)
     .then(function (response) {
-      console.log(response);
       result = { data: response.data, ok: true };
     })
     .catch(function (error) {
-      console.log(error);
       result = { message: error.message, ok: false };
     });
   return result;
