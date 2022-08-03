@@ -4,6 +4,7 @@ import React from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 /** Images */
 import Succes from "../assets/success.svg";
@@ -59,9 +60,11 @@ export default function ModalMessage(props) {
         )}
         {props.message}
         <hr />
+        <Stack width="100%" direction="row-reverse">
         <Button onClick={props.handleClose} sx={styleCloseButton}>
           Cerrar
         </Button>
+        </Stack>        
       </Box>
     </Modal>
   );
