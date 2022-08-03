@@ -16,6 +16,7 @@ import { createATicket, searchTicket } from "../api/tickets";
 /** Components */
 import ModalMessage from "../componets/modalMessage";
 
+/** Moment */
 import moment from "moment";
 import 'moment/locale/es';
 moment.locale('es');
