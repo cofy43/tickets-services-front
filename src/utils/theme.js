@@ -11,11 +11,17 @@ export const theme = createTheme({
           padding: "0px 25px",
           fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
           color: "white",
-        },
+          "&.Mui-disabled": {
+            color: "black"
+          },
+          "&:hover": {
+            backgroundColor: "rgb(159, 145, 247)",            
+          }
+        },        
         outlined: {
           backgroundColor: "transparent",
           color: "rgb(95, 72, 246)",
-        }
+        },        
       },
     },
     MuiCard: {
