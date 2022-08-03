@@ -40,12 +40,10 @@ export default function CustomTable(props) {
         <TableHead>
           <TableRow>
             <StyledTableCell>Número de Ticket</StyledTableCell>
-            <StyledTableCell align="right">Creación</StyledTableCell>
-            <StyledTableCell align="right">
-              Última actualización
-            </StyledTableCell>
-            <StyledTableCell align="right">Estatus</StyledTableCell>
-            <StyledTableCell align="right">Cliente</StyledTableCell>
+            <StyledTableCell>Creación</StyledTableCell>
+            <StyledTableCell>Actualización</StyledTableCell>
+            <StyledTableCell>Estatus</StyledTableCell>
+            <StyledTableCell>Cliente</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -54,10 +52,10 @@ export default function CustomTable(props) {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.createdAt}</StyledTableCell>
-              <StyledTableCell align="right">{row.updatedAt}</StyledTableCell>
-              <StyledTableCell align="right">{row.status.name}</StyledTableCell>
-              <StyledTableCell align="right">{row.client.name}</StyledTableCell>
+              <StyledTableCell align="left">{row.createdAt}</StyledTableCell>
+              <StyledTableCell align="left">{row.updatedAt}</StyledTableCell>
+              <StyledTableCell align="left">{row.status.name}</StyledTableCell>
+              <StyledTableCell align="left">{row.client.name}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
