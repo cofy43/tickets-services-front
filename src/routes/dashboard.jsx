@@ -27,6 +27,9 @@ import { theme } from "../utils/theme";
 /** React Router */
 import { useNavigate } from "react-router-dom";
 
+import axios from 'axios';
+import { PacmanLoader } from "react-spinners";
+
 /** Moment */
 import moment from "moment";
 import "moment/locale/es";
@@ -60,6 +63,13 @@ const styleTextField = {
   marginTop: "10px",
 };
 
+const spinner = {
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  zIndex: '9999',
+};
+
 export default function Dashboard() {
   const history = useNavigate();
   // Member data
@@ -77,8 +87,39 @@ export default function Dashboard() {
   const [ticketStatus, setTicketStatus] = useState(null);
   const [ticketNotes, setTicketNotes] = useState("");
 
+  const [loading, setLoading] = React.useState(false); //loading spiner
+
   const nexIcon = <i class="fa-solid fa-angles-right"></i>;
   const endIcon = <i class="fa-regular fa-circle-check"></i>;
+
+  axios.interceptors.request.use(
+    (conf) => {
+      setLoading(true);
+      return conf;
+    },
+    (error) => {
+      setLoading(false);
+      return Promise.reject(error);
+    }
+  );
+
+  axios.interceptors.response.use(
+    (res) => {
+      setLoading(false);
+      return res;
+    },
+    async (err) => {
+      setLoading(false);
+      await handleError(err);
+      return Promise.reject(err);
+    }
+  );
+
+  function handleError(err) {
+    if (err.response.status === 401) {
+      history("/", { replace: true });
+    }    
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -203,6 +244,9 @@ export default function Dashboard() {
           </Button>
         </nav>
         <main>
+          <div style={spinner}>
+            <PacmanLoader color={'#2A7DE1'} loading={loading} size={25} />
+          </div>
           <Grid container sx={{ width: "100%" }}>
             <Grid item p={"2rem"} sx={{ width: "100%" }}>
               <Card sx={{ width: "100%" }}>
