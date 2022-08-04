@@ -102,6 +102,12 @@ export default function Home() {
     return moment(dateString).format('DD/MM/YYYY');
   }
 
+  function clearSearch() {
+    setSearch("");
+    setData(null);
+    setTicketFouned(false);
+  }
+
   return (
     <>
       <Grid
@@ -191,6 +197,7 @@ export default function Home() {
               </Typography>
               <Typography variant="h6">Puedes consultarlo aquí</Typography>
               <InputBase
+                value={search}
                 sx={{ ml: 1, flex: 1, mt: 2 }}
                 placeholder="Búsqueda rápida"
                 inputProps={{ "aria-label": "search" }}
@@ -202,6 +209,13 @@ export default function Home() {
                 aria-label="search"
               >
                 <i class="fa-solid fa-magnifying-glass"></i>
+              </IconButton>
+              <IconButton
+                onClick={() => clearSearch()}
+                sx={{ p: "10px" }}
+                aria-label="clear-search"
+              >
+                <i class="fa-solid fa-eraser"></i>
               </IconButton>
               {ticketFouned && (
                 <Grid container rowSpacing={3.2}>
