@@ -25,6 +25,7 @@ export async function logout() {
     method: "get",
     url: `${env.REACT_BASE_URL}auth/logout`,
     withCredentials: true,
+    credentials: "include",
   };
   await axios(config)
     .then(function (response) {
